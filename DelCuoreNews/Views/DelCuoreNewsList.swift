@@ -1,0 +1,40 @@
+/*
+See LICENSE folder for this sample’s licensing information.
+
+Abstract:
+A view showing a list of landmarks.
+*/
+
+import SwiftUI
+
+struct DelCuoreNewsList: View {
+    var body: some View {
+        NavigationView {
+            List(landmarks) { landmark in
+                /*
+                NavigationLink(destination: LandmarkDetail(landmark: landmark)) {
+                    LandmarkRow(landmark: landmark)
+                }
+                */
+                Link(destination: URL(string: landmark.url)!) {
+                    DelCuoreNewsRow(landmark: landmark)
+                }
+            }
+            .navigationTitle("Del Cuore news")
+        }
+    }
+    
+    
+ 
+
+}
+
+struct LandmarkList_Previews: PreviewProvider {
+    static var previews: some View {
+        ForEach(["iPhone SE (2nd generation)", "iPhone XS Max"], id: \.self) { deviceName in
+            DelCuoreNewsList()
+                .previewDevice(PreviewDevice(rawValue: deviceName))
+                .previewDisplayName(deviceName)
+        }
+    }
+}
